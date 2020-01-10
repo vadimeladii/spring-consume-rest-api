@@ -1,7 +1,7 @@
-package md.springboot.consumer.resttemplate.impl;
+package md.springboot.consumer.resttemplate;
 
 import lombok.RequiredArgsConstructor;
-import md.springboot.consumer.resttemplate.PostConsumer;
+import md.springboot.consumer.PostConsumer;
 import md.springboot.dto.Post;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
@@ -12,7 +12,7 @@ import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
-public class PostConsumerImpl implements PostConsumer {
+public class PostConsumerRT implements PostConsumer {
 
     @Value("${consume.rest.api.url}")
     private String url;
@@ -22,5 +22,10 @@ public class PostConsumerImpl implements PostConsumer {
     @Override
     public List<Post> retrieve() {
         return Arrays.asList(restTemplate.getForObject(url, Post[].class));
+    }
+
+    @Override
+    public Post retrieveById(Long id) {
+        return restTemplate.getForObject(url + "/{id}", Post.class, id);
     }
 }
