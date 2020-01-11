@@ -33,4 +33,9 @@ public class PostController {
     public void delete(@PathVariable("id") Long id) {
         consumer.delete(id);
     }
+
+    @PostMapping
+    public void create(Post post) {
+        consumer.create(post);
+    }
 }

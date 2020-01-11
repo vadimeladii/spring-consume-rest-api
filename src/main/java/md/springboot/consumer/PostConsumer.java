@@ -13,4 +13,6 @@ public interface PostConsumer {
     void update(Long id, Post post);
 
     void delete(Long id);
+
+    void create(Post post);
 }

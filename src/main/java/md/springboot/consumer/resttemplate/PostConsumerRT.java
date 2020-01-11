@@ -4,13 +4,13 @@ import lombok.RequiredArgsConstructor;
 import md.springboot.consumer.PostConsumer;
 import md.springboot.dto.Post;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
 import java.util.List;
 
-@Repository
+@Component
 @RequiredArgsConstructor
 public class PostConsumerRT implements PostConsumer {
 
@@ -37,5 +37,10 @@ public class PostConsumerRT implements PostConsumer {
     @Override
     public void delete(Long id) {
         restTemplate.delete(url + "/{id}", id);
+    }
+
+    @Override
+    public void create(Post post) {
+        restTemplate.postForObject(url, post, Post.class);
     }
 }
