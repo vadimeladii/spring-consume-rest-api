@@ -28,4 +28,14 @@ public class PostConsumerRT implements PostConsumer {
     public Post retrieveById(Long id) {
         return restTemplate.getForObject(url + "/{id}", Post.class, id);
     }
+
+    @Override
+    public void update(Long id, Post post) {
+        restTemplate.put(url + "/{id}", post, id);
+    }
+
+    @Override
+    public void delete(Long id) {
+        restTemplate.delete(url + "/{id}", id);
+    }
 }

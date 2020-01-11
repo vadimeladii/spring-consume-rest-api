@@ -9,4 +9,8 @@ public interface PostConsumer {
     List<Post> retrieve();
 
     Post retrieveById(Long id);
+
+    void update(Long id, Post post);
+
+    void delete(Long id);
 }

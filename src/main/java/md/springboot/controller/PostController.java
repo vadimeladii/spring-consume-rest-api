@@ -3,10 +3,7 @@ package md.springboot.controller;
 import lombok.RequiredArgsConstructor;
 import md.springboot.consumer.PostConsumer;
 import md.springboot.dto.Post;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,5 +22,15 @@ public class PostController {
     @GetMapping("{id}")
     public Post retrieveById(@PathVariable("id") Long id) {
         return consumer.retrieveById(id);
+    }
+
+    @PutMapping("{id}")
+    public void update(@PathVariable("id") Long id, Post post) {
+        consumer.update(id, post);
+    }
+
+    @DeleteMapping("{id}")
+    public void delete(@PathVariable("id") Long id) {
+        consumer.delete(id);
     }
 }
